@@ -8,6 +8,11 @@ from analitics.core.config import settings
 app = Flask(settings.APP_NAME)
 
 
+@app.route("/", methods=["GET"])
+def home():
+    return render_template("home.html")
+
+
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
     return render_template("dashboard.html")
