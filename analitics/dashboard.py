@@ -3,7 +3,7 @@ from flask import (
     render_template,
 )
 
-from analitics.descriptive.core.config import settings
+from analitics.core.config import settings
 
 app = Flask(settings.APP_NAME)
 
