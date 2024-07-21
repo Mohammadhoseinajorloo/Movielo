@@ -1,8 +1,19 @@
+#################
+#####FOLDERS#####
+#################
 # ignored folder relation with virtualenv environment
 .venv
 
 # ignored folder relation with IDE settings
 .idea
 
+
+# ignored folder relation with caches python
+__pycache__
+
+#################
+######FILES######
+#################
 # ignored file relation with setting project (This file can have undisplayed specifications)
 analitics/.env
+
