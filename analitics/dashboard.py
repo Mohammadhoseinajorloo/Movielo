@@ -19,5 +19,5 @@ def dashboard():
 
 
 if __name__ == "__main__":
-    print(f"loading {app.name} ...")
+    print(f"loading analitic website {app.name} ...")
     app.run(debug=True)
