@@ -15,5 +15,5 @@ __pycache__
 ######FILES######
 #################
 # ignored file relation with setting project (This file can have undisplayed specifications)
-analitics/.env
+analitics/descriptive/.env
 
