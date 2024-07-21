@@ -14,4 +14,5 @@ def dashboard():
 
 
 if __name__ == "__main__":
+    print(f"loading {app.name} ...")
     app.run(debug=True)
