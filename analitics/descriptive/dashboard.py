@@ -7,7 +7,8 @@ from analitics.descriptive.core.config import settings
 
 app = Flask(settings.APP_NAME)
 
-@app.route("/dashboard")
+
+@app.route("/dashboard", methods=["GET"])
 def dashboard():
     return render_template("dashboard.html")
 
