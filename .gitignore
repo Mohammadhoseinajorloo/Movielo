@@ -3,3 +3,6 @@
 
 # ignored folder relation with IDE settings
 .idea
+
+# ignored file relation with setting project (This file can have undisplayed specifications)
+analitics/.env
