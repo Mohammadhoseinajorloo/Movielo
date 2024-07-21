@@ -1,22 +1,12 @@
-from flask import (
-    Flask,
-    render_template,
-)
+import views
+from flask import Flask
 
 from analitics.core.config import settings
 
 app = Flask(settings.APP_NAME)
 
-
-@app.route("/", methods=["GET"])
-def home():
-    return render_template("home.html")
-
-
-@app.route("/dashboard", methods=["GET"])
-def dashboard():
-    return render_template("dashboard.html")
-
+app.add_url_rule("/", view_func=views.home)
+app.add_url_rule("/dashboard", view_func=views.dashboard)
 
 if __name__ == "__main__":
     print(f"loading analitic website {app.name} ...")
