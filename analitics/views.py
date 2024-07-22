@@ -1,4 +1,5 @@
 from flask import render_template
+from analitics.descriptive.totals import record_users, record_ratings, record_movies, record_tags
 
 
 def home():
@@ -6,14 +7,10 @@ def home():
 
 
 def dashboard():
-    total_data = 0
-    null_data = 0
-    total_users= 0
-    total_movies= 0
     return render_template(
         "dashboard.html",
-        total_data=total_data,
-        null_data=null_data,
-        total_users=total_users,
-        total_movies=total_movies
+        all_user=record_users,
+        all_ratings=record_ratings,
+        all_movies=record_movies,
+        all_tags=record_tags,
     )
