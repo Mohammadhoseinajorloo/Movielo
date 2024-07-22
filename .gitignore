@@ -11,6 +11,10 @@
 # ignored folder relation with caches python
 __pycache__
 
+
+# ignored foker relation with data project
+data
+
 #################
 ######FILES######
 #################
