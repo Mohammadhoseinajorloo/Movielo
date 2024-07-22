@@ -6,4 +6,5 @@ def home():
 
 
 def dashboard():
-    return render_template("dashboard.html")
+    total_data = 100000
+    return render_template("dashboard.html", total_data=total_data)
