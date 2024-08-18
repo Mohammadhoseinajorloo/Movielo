@@ -2,7 +2,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import numpy as np
 
-def recommend_items(user: str, user_item_matrix: np.ndarray, item_similarity_df: np.ndarray, top_n: int=2):
+def recommend_items(user: str, user_item_matrix: np.ndarray, similarity_df: np.ndarray, top_n: int=2):
     """recommend item base
 
     Args:
@@ -11,10 +11,14 @@ def recommend_items(user: str, user_item_matrix: np.ndarray, item_similarity_df:
         item_similarity_df (np.ndarray): matrix from item similarity
         top_n (int, optional): top number. Defaults to 2.
     """
-    user_ratings = user_item_matrix.loc[user].dropna()
-    scores = item_similarity_df[user_ratings.index].dot(user_ratings).div(item_similarity_df[user_ratings.index].sum(axis=1))
-    scores = scores.drop(user_ratings.index)
-    return scores.nlargest(top_n).index
+    similarity_user = user_similarity_df[user]
+    similar_user_rating = user_item_matrix.mul(similarity_user, axis=0)
+    scores = similar_user_rating.sum(axis=0)
+    scores = scores.div(similarity_user.sum(axis=0))
+
+    user_rated_item = user_item_matrix.loc[user].dropna().index
+    scores = scores.drop(user_rated_item)
+    return scores.nlargest(top_n)
 
 
 if __name__ == "__main__":
@@ -33,5 +37,8 @@ if __name__ == "__main__":
     item_similarity = cosine_similarity(user_item_matrix_filled.T)
     item_similarity_df = pd.DataFrame(item_similarity, index=user_item_matrix.columns, columns=user_item_matrix.columns)
 
-    recommendations = recommend_items("Bob", user_item_matrix, item_similarity_df)
+    user_similarity = cosine_similarity(user_item_matrix_filled)
+    user_similarity_df = pd.DataFrame(user_similarity, index=user_item_matrix.index, columns=user_item_matrix.index)
+
+    recommendations = recommend_items("Bob", user_item_matrix, user_similarity_df)
     print(recommendations)
